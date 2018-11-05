@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>车辆轨迹查询</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="laydate/laydate.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7E5P4HEtg5W8ANgxMiSfaO55cFFZjQMes"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+            $("#queryBtn").click(function () {
+                showMap(1);
+            });
+
+        });
+
+    var data = [
+        [113.236873,23.13451],
+        [113.24564,23.147005],
+        [113.26605,23.152322]
+        ];
+
+    // 根据轨迹点，两两连线，最终合成一条完整的轨迹
+    function showMap() {
+        var abc = $(data);
+        var chartData = [];
+        $.each(abc, function (item, value) {
+            chartData.push(new BMap.Point(value[0], value[1]));
+        })
+        for (var i = 0; i < chartData.length-1; i++) {
+            var startPoint = chartData[i];
+            var endPoint = chartData[i + 1];
+            showPath(startPoint, endPoint,i==0,i==chartData.length-2);
+        }
+    }
+
+    // 两个坐标点连线
+    function showPath(startPoint, EndPoint,displayStartIcon,displayEndIcon){
+        var walking = null;
+        if(displayStartIcon && !displayEndIcon){ // 第一个起点只展示起点图标
+            walking = new BMap.DrivingRoute(map, { renderOptions: { map: map, autoViewport: true },onMarkersSet:function(routes) {map.removeOverlay(routes[1].marker);}});
+        }else if(!displayStartIcon && !displayEndIcon){//中间的起点终点不展示起点、终点图标
+            walking = new BMap.DrivingRoute(map, { renderOptions: { map: map, autoViewport: true },onMarkersSet:function(routes) {map.removeOverlay(routes[0].marker);map.removeOverlay(routes[1].marker);}});
+        }else{// 最后一个终点只展示终点图标
+            walking = new BMap.DrivingRoute(map, { renderOptions: { map: map, autoViewport: true },onMarkersSet:function(routes) {map.removeOverlay(routes[0].marker);}});
+        }
+
+        walking.search(startPoint, EndPoint);
+    }
+
+    </script>
+</head>
+<body>
+
+<form>
+    号牌号牌:<input id="hphm" type="text" value="">
+    开始时间:<input class="laydate-icon"
+                id="beginTime"
+                onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+    结束时间:<input class="laydate-icon"
+                id="endTime"
+                onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+    <input type="button"  id="queryBtn" value="查询" onclick="queryGis()">
+</form>
+<div id="allmap" style="height:600px; " ></div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(115.30637,26.086458), 15);
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.NavigationControl());
+
+</script>

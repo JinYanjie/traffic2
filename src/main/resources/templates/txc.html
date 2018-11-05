@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/easyui-lang-zh_CN.js"></script>
+
+<div class="easyui-layout" data-options="fit:true" style="font-size: 12px;width:100%;height:100%;">
+    <table class="easyui-datagrid" title="同行车辆分析结果列表"
+           data-options="fit:true,singleSelect:true,url:'/traffic/listTxc',method:'get',pagination:true">
+        <thead>
+        <tr>
+            <th data-options="field:'jsbh',width:200">计算编号</th>
+            <th data-options="field:'hphm',width:150">号牌号码</th>
+            <th data-options="field:'kkbh',width:150">卡口编号</th>
+            <th data-options="field:'create_time',width:150">创建时间</th>
+        </tr>
+        </thead>
+    </table>
+</div>

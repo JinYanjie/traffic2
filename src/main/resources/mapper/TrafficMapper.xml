@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnw.traffic.dao.TrafficDao" >
+
+    <select id="selectTpcs" resultType="com.cnw.traffic.model.Traffic">
+        select t.id,t.jsbh,t.hphm,t.clpp,t.clys,t.tgsj,t.kkbh,t.create_time from t_tpc_result t
+    </select>
+
+    <select id="selectTxcs" resultType="com.cnw.traffic.model.Traffic">
+        select t.id,t.jsbh,t.hphm,t.kkbh,t.create_time from t_txc_result t
+    </select>
+
+    <select id="selectScrcs" resultType="com.cnw.traffic.model.Traffic">
+        select t.id,t.jsbh,t.hphm,t.kkbh,t.tgsj,t.create_time from  t_scrc_result t
+    </select>
+
+</mapper>

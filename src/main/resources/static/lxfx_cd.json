@@ -1,0 +1,25 @@
+[{
+	"id":1,
+	"text":"套牌车分析",
+	"children":[],
+	"attributes":{
+		"url":"/tpc"
+	},
+  "iconCls":"icon-car1"
+},{
+	"id":2,
+	"text":"同行车辆分析",
+	"children":[],
+	"attributes":{
+		"url":"/txc"
+	},
+  "iconCls":"icon-car2"
+},{
+	"id":3,
+	"text":"首次入城分析",
+	"children":[],
+	"attributes":{
+		"url":"/scrc"
+	},
+  "iconCls":"icon-car4"
+}]

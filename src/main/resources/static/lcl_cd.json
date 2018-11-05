@@ -1,0 +1,17 @@
+[{
+	"id":1,
+	"text":"套牌车布控",
+	"children":[],
+	"attributes":{
+		"url":"/tpcStreaming"
+	},
+  "iconCls":"icon-car"
+},{
+	"id":2,
+	"text":"首次入城车辆布控",
+	"children":[],
+	"attributes":{
+		"url":"/scrcStreaming"
+	},
+  "iconCls":"icon-car3"
+}]

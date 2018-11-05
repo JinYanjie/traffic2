@@ -1,0 +1,9 @@
+[{
+	"id":1,
+	"text":"车辆轨迹查询",
+     "state":"open",
+     "iconCls":"icon-map",
+	"attributes":{
+		"url":"/gis"
+	}
+}]
